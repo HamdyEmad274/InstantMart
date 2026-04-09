@@ -13,6 +13,7 @@ namespace InstantMart
 
             // ===== SEGMENT 1: Memory & Foundation Demo =====
             // BETTING GAME #1: Struct vs Class
+
             Console.WriteLine("=== BETTING GAME #1: Memory Test ===");
             // TODO: Demonstrate Money struct vs Product class behavior
             
