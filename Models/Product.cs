@@ -7,13 +7,14 @@ namespace InstantMart.Models
         // Name: public get, private set
         // Price: public get, protected set (for inheritance)
         // Stock: public get/set
-        
-        public string Name { get; set; } = string.Empty;
-        public decimal Price { get; set; }
+
+        public string Name { get; private set; } = string.Empty;
+        public decimal Price { get; protected set; }
         public int Stock { get; set; }
 
         // SESSION 2: Static member
         // TODO: Add static TotalProductsCreated counter
+        public static int TotalProductsCreated { get; private set; }
 
         // SESSION 2: Constructor
         // TODO: Add constructor with validation:
@@ -21,11 +22,29 @@ namespace InstantMart.Models
         // - Price cannot be negative
         // - Increment TotalProductsCreated
 
+        public Product(string name, decimal price, int stock)
+        {
+            if (string.IsNullOrWhiteSpace(name))
+                throw new ArgumentException("Name cannot be null or empty.");
+            if (price < 0)
+                throw new ArgumentException("Price cannot be negative.");
+
+            Name = name;
+            Price = price;
+            Stock = stock;
+
+            TotalProductsCreated++;
+        }
+
         // SESSION 4: Virtual method for polymorphism
         // TODO: Add virtual CalculatePrice() method
         // Default: return Price
 
         // SESSION 2: Static method
         // TODO: Add DisplayStoreStats() static method
+        public static void DisplayStoreStats()
+        {
+            Console.WriteLine($"Total products created: {TotalProductsCreated}");
+        }
     }
 }
