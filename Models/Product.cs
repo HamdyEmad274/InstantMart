@@ -39,6 +39,10 @@ namespace InstantMart.Models
         // SESSION 4: Virtual method for polymorphism
         // TODO: Add virtual CalculatePrice() method
         // Default: return Price
+        public virtual decimal CalculatePrice()
+        {
+            return Price;
+        }
 
         // SESSION 2: Static method
         // TODO: Add DisplayStoreStats() static method
@@ -47,4 +51,21 @@ namespace InstantMart.Models
             Console.WriteLine($"Total products created: {TotalProductsCreated}");
         }
     }
+    public class PhysicalProduct : Product
+    {
+        public double WeightKg { get; set; }
+        public PhysicalProduct(string name , decimal price , int stock , double wight) : base(name , price ,stock)
+        {
+            WeightKg = wight;
+        }
+
+        public override decimal CalculatePrice()  // Override is type of Polymorphism
+        {
+            // conditional expression way to write : condition ? trueValue : falseValue;
+            decimal shippingCost = WeightKg > 1 ? 10m : 5m;
+            return Price + shippingCost;
+        }
+
+    }
+
 }

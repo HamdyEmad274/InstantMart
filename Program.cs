@@ -34,11 +34,36 @@ namespace InstantMart
             //Console.WriteLine($"After: {product.Price}");
             Console.WriteLine();
 
+            // List Cart = new List()
+            // cart.Add(new DigitalProduct("E-book", 10.00m));
+            // cart.Add(new PhysicalProduct("Book", 10.00m, 10));
+
+            /*
+             * Questions : When I Loop through the list, and call CalculatePrice(),
+             * which one runs?
+             * A) Always the product base class version
+             * B) Always the product derived class version
+             * C) won't compile
+             * D) Random
+             */
+
             // ===== SEGMENT 2: Inheritance & Polymorphism Demo =====
             // BETTING GAME #2: Polymorphism Test
             Console.WriteLine("=== BETTING GAME #2: Polymorphism Test ===");
             // TODO: Create List<Product> with different product types
             // TODO: Loop and call CalculatePrice() — which one runs?
+            List<Product> cart = new List<Product>();
+            cart.Add(new DigitalProduct("E-book", 10.00m, 100, "http://downloadlink.com/ebook"));
+            cart.Add(new PhysicalProduct("Book", 20.00m, 50, 2.5));
+            cart.Add(new SubscriptionProduct("Magazine", 5.00m, 200, 12));
+
+            decimal total = 0.0m;
+            foreach (var item in cart)
+            {
+                decimal price = item.CalculatePrice();
+                Console.WriteLine($"Item: {item.Name}, Price: {price}");
+                total += price;
+            }
             Console.WriteLine();
 
             // ===== SEGMENT 3: Interface Demo =====

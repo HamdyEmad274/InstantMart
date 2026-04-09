@@ -2,15 +2,16 @@ namespace InstantMart.Models
 {
     // SESSION 4: Inheritance
     // TODO: Inherit from Product
-    public class DigitalProduct
+    public class DigitalProduct : Product
     {
-        // Property for DownloadLink
         public string DownloadLink { get; set; } = string.Empty;
-
-        // TODO: Constructor with : base() call
-        // Parameters: name, price, stock, link
-
-        // TODO: Override CalculatePrice()
-        // Apply 10% discount: Price * 0.9m
+        public DigitalProduct(string name, decimal price, int stock , string downloadLink) : base(name, price, stock)
+        {
+            DownloadLink = downloadLink;
+        }
+        public override decimal CalculatePrice()
+        {
+            return Price * 0.9m; // 10% discount for digital products
+        }
     }
 }
